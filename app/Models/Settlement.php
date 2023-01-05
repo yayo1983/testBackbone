@@ -38,8 +38,8 @@ class Settlement extends Model
     public function getSettlementAttribute(): object {
         $objectS = new stdClass;
         $objectS->key = $this->id;
-        $objectS->name = strtoupper($this->name);
         $cpService = new CPService();
+        $objectS->name = strtoupper($cpService->removeAccents($this->name));
         $objectS->zone_type = strtoupper($cpService->removeAccents($this->zone_type));
         $objectS->settlement_type = $this->settlementType->settlementtype;
         return  $objectS;
