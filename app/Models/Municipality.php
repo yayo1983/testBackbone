@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CPService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
@@ -32,7 +33,8 @@ class Municipality extends Model
     public function getMunicipalityAttribute(): object {
         $objectM = new stdClass;
         $objectM->key = $this->id;
-        $objectM->name = strtoupper($this->name);
+        $cpService = new CPService();
+        $objectM->name = strtoupper($cpService->removeAccents($this->name));
         return $objectM;
     }
 }

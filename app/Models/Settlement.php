@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CPService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
@@ -38,7 +39,8 @@ class Settlement extends Model
         $objectS = new stdClass;
         $objectS->key = $this->id;
         $objectS->name = strtoupper($this->name);
-        $objectS->zone_type = strtoupper($this->zone_type);
+        $cpService = new CPService();
+        $objectS->zone_type = strtoupper($cpService->removeAccents($this->zone_type));
         $objectS->settlement_type = $this->settlementType->settlementtype;
         return  $objectS;
     }
