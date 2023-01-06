@@ -32,7 +32,7 @@ class Municipality extends Model
 
     public function getMunicipalityAttribute(): object {
         $objectM = new stdClass;
-        $objectM->key = $this->id;
+        $objectM->key = intval($this->code);
         $cpService = new CPService();
         $objectM->name = strtoupper($cpService->removeAccents($this->name));
         return $objectM;

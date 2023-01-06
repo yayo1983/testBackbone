@@ -5,6 +5,7 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use stdClass;
 
 class PostalCode  extends Model
@@ -25,20 +26,23 @@ class PostalCode  extends Model
     /**
      * Get the settlements associated with the PostalCode.
      */
-    public function settlements()
+    public function settlements(): Relation
     {
-        return $this->belongsTo(Settlement::class, 's_id');
+        return $this->hasMany(Settlement::class);
     }
     
     public function getPostalCodeAttribute(): array{
-        $settlements = [];
-        array_push($settlements, $this->settlements->settlement);
         $objectCP = new stdClass;
         $objectCP-> zip_code  = $this->zip_code;
         $objectCP-> locality  = $this->locality;
-        $objectCP-> federal_entity = $this->settlements->municipality->federalEntity->federalentity;
-        $objectCP-> settlements = $settlements;
-        $objectCP-> municipality = $this->settlements->municipality->municipality;
+        $settlements = [];
+        $auxSettlements = $this->settlements()->get();  
+        foreach($auxSettlements as $object){
+            array_push($settlements, $object->settlement);
+        }
+        $objectCP-> federal_entity = $auxSettlements[0]->municipality->federalEntity->federalentity;
+        $objectCP-> settlements =  $settlements;
+        $objectCP-> municipality = $auxSettlements[0]->municipality->municipality;
         return get_object_vars($objectCP);
     }
 }

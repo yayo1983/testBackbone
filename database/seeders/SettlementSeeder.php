@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Municipality;
+use App\Models\PostalCode;
 use App\Models\Settlement;
 use App\Models\SettlementType;
 use Exception;
@@ -33,13 +34,14 @@ class SettlementSeeder extends Seeder
                     Settlement::create(array(
                         'name' => $cpData['d_asenta'],
                         'zone_type' => $cpData['d_zona'],
+                        'code' => $cpData['id_asenta_cpcons'],
                         'settlement_type' => SettlementType::where('name', $cpData['d_tipo_asenta'])->first()->id,
-                        'm_id' => Municipality::where('name', $cpData['D_mnpio'])->first()->id
-
+                        'm_id' => Municipality::where('name', $cpData['D_mnpio'])->first()->id,
+                        'postal_code_id' => PostalCode::where('zip_code', $cpData['d_codigo'])->first()->id
                     ));
-                    array_push($arrayS, $cpData['d_asenta']); 
-                    array_push($arrayCM, $cpData['c_mnpio']); 
-                    array_push($arrayFE, $cpData['c_estado']); 
+                   // array_push($arrayS, $cpData['d_asenta']); 
+                   // array_push($arrayCM, $cpData['c_mnpio']); 
+                  //  array_push($arrayFE, $cpData['c_estado']); 
                 }
             } 
         } catch (Exception $e) {

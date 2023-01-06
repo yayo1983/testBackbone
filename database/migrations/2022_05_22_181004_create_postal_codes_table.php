@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('postal_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('locality')->default(' '); 
+            $table->string('locality'); 
             $table->string('zip_code');
-            $table->unsignedBigInteger('s_id');
-            $table->foreign('s_id')->references('id')->on('settlements');
         });
     }
 

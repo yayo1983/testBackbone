@@ -16,7 +16,7 @@ class Settlement extends Model
     protected $table = 'settlements';
 
     protected $fillable = [
-        'name', 'zone_type','settlement_type', 'id', 'm_id'
+        'name', 'zone_type','settlement_type', 'id', 'm_id', 'code_postal_id', 'code'
     ];
 
     /**
@@ -28,7 +28,7 @@ class Settlement extends Model
     }
 
     /**
-     * Get the   municipality that owns the Settlement.
+     * Get the municipality that owns the Settlement.
      */
     public function municipality()
     {
@@ -37,7 +37,7 @@ class Settlement extends Model
 
     public function getSettlementAttribute(): object {
         $objectS = new stdClass;
-        $objectS->key = $this->id;
+        $objectS->key = intval($this->code);
         $cpService = new CPService();
         $objectS->name = strtoupper($cpService->removeAccents($this->name));
         $objectS->zone_type = strtoupper($cpService->removeAccents($this->zone_type));

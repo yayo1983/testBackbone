@@ -17,10 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('zone_type')->nullable();
+            $table->string('code');
             $table->unsignedBigInteger('settlement_type');
             $table->foreign('settlement_type')->references('id')->on('settlement_types');
             $table->unsignedBigInteger('m_id');
             $table->foreign('m_id')->references('id')->on('municipalities');
+            $table->unsignedBigInteger('postal_code_id');
+            $table->foreign('postal_code_id')->references('id')->on('postal_codes');
         });
     }
 

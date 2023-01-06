@@ -28,22 +28,14 @@ class PostalCodeSeeder extends Seeder
                    $postalCode = new PostalCode();
                    $postalCode->locality = $cpData['d_ciudad'] ?? ' ';
                    $postalCode->zip_code = $cpData['d_codigo'];
-                   $postalCode->s_id = Settlement::where('name', '=' , $cpData['d_asenta'])->first()->id; 
-                   $postalCode->save();    
-                   /* PostalCode::create(array(
-                        'locality' => $cpData['d_ciudad']? $cpData['d_ciudad'] : '',
-                        'zip_code' => $cpData['d_codigo'],
-                        's_id' => Settlement::where('name', '=' , $cpData['d_asenta'])->first()->id
-                    )); */
+                   $postalCode->save();
 
-                   
                     array_push($arrayPC, $cpData['d_codigo']); 
                 }
             }
 
         } catch (Exception $e) {
-           //throw $e; 
-          print_r($cpData);
+           throw $e; 
         }
     }
 }

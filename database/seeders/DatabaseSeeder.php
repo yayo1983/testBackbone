@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
             FederalEntitySeeder::class,
             MunicipalitySeeder::class,
             SettlementTypeSeeder::class,
-            SettlementSeeder::class,
             PostalCodeSeeder::class,
+            SettlementSeeder::class,
         ]);
     }
 }

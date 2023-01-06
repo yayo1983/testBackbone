@@ -14,15 +14,13 @@ class FederalEntity extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'name', 'code','id'
-    ];
+    protected $fillable = ['name', 'code','id'];
 
     public function getfederalentityAttribute(): object {
         $objectFE = new stdClass;
-        $objectFE->key = $this->id;
+        $objectFE->key  = intval($this->code);
         $objectFE->name = $this->name;
-        $objectFE->code = $this->code;
+        $objectFE->code = null;
         return $objectFE;
     }
 }
