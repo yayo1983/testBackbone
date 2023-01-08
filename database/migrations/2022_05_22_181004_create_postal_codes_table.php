@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('postal_codes', function (Blueprint $table) {
             $table->id();
             $table->string('locality'); 
-            $table->string('zip_code');
+            $table->string('zip_code')->index();
         });
     }
 
