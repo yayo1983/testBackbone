@@ -25,3 +25,5 @@ Pasos
 4.2. Poner IP pública a la instancia
 4.3. Descargar proyecto en la instancia con git
 4.4. ejecutar php artisan optimize, config:clear and key:generate
+
+5. Crear indexado en las tablas settlements y postal_codes para mejorar la velocidad de respuesta de las consultas.
