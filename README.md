@@ -26,4 +26,4 @@ Pasos
 4.3. Descargar proyecto en la instancia con git
 4.4. ejecutar php artisan optimize, config:clear and key:generate
 
-5. Crear indexado en las tablas settlements y postal_codes para mejorar la velocidad de respuesta de las consultas.
+5. Crear indexado en las tablas settlements y postal_codes para mejorar la velocidad de respuesta de las consultas. Y añadido el indexado en las clases migrations
