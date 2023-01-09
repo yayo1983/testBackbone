@@ -1,8 +1,5 @@
-Para instalar
-
-
-5. Definir la ruta de la base de datos sqlite
-6. 
+1. Definir la ruta de la base de datos sqlite
+2. 
 Ejecutar php artisan migrate
 Ejecutar php artisan db:seed --class=FederalEntitySeeder
 Ejecutar php artisan db:seed --class=MunicipalitySeeder
@@ -19,8 +16,7 @@ Pasos
 2.4. Desarrollar lógica de negocio en el modelo
 2.5. Crear la ruta del API y la function en la clase controladora para que llame a la clase Service que implementa el servicio
 2.6. En la clase service creado funciones para standarizar la salida en el formato requerido
-2.7. Utilizar GrphQL para realizar las consultas, creacion de type y query de GraphQL
-2.8. Creación de pruebas unitarias para probar las funciones y seeders
+2.7. Creación de pruebas unitarias para probar las funciones y seeders
 
 3. Subir proyecto en GitHub
 
@@ -29,3 +25,5 @@ Pasos
 4.2. Poner IP pública a la instancia
 4.3. Descargar proyecto en la instancia con git
 4.4. ejecutar php artisan optimize, config:clear and key:generate
+
+5. Crear indexado en las tablas settlements y postal_codes para mejorar la velocidad de respuesta de las consultas.
